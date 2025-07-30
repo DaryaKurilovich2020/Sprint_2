@@ -1,17 +1,29 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import org.example.model.Apple;
+import org.example.model.Food;
+import org.example.model.Meat;
+import org.example.model.constants.Colour;
+import org.example.service.ShoppingCart;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Meat meatVar = new Meat(5, 100);
+        Apple redApplesVar = new Apple(10,50, Colour.RED);
+        Apple greenApplesVar = new Apple(8,60, Colour.GREEN);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        List<Food> foodList = new ArrayList<>();
+        foodList.add(meatVar);
+        foodList.add(redApplesVar);
+        foodList.add(greenApplesVar);
+
+        ShoppingCart shoppingCart = new ShoppingCart(foodList);
+
+        System.out.println("Общая суммы товаров без скидки " + shoppingCart.getCartSummaryNoDiscount());
+        System.out.println("Общая суммы товаров со скидкой " + shoppingCart.getCartSummaryWithDiscount());
+        System.out.println("Сумма всех вегетарианских продуктов без скидки " + shoppingCart.getCartVegetarianSummaryNoDiscount());
     }
 }
